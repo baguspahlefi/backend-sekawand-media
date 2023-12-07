@@ -146,34 +146,22 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
-            <li class="menu-item {{ Request::routeIs('dashboard') ? 'active' : '' }}">
-              <a href="{{route('dashboard')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
-            </li>
-            <li class="menu-item mt-2 {{ Request::routeIs('ajukan-pemesanan.index','ajukan-pemesanan.show') ? 'active' : '' }}">
-              <a href="{{route('ajukan-pemesanan.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-car"></i>
-                <div data-i18n="Analytics">Ajukan Pemesanan</div>
+            <li class="menu-item {{ Request::routeIs('tambahPemesanan.index') ? 'active' : '' }}">
+              <a href="{{route('tambahPemesanan.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-plus-circle"></i>
+                <div data-i18n="Analytics">Tambah Pemesanan</div>
               </a>
             </li>
             <li class="menu-item mt-2">
-              <a href="{{route('pemesanan.index')}}" class="menu-link">
+              <a href="{{route('riwayatPemesanan.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Analytics">Pemesanan</div>
+                <div data-i18n="Analytics">Riwayat Pemesanan</div>
               </a>
             </li>
             <li class="menu-item mt-2">
               <a href="{{route('penyetujuan.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-check"></i>
                 <div data-i18n="Analytics">Penyetujuan</div>
-              </a>
-            </li>
-            <li class="menu-item mt-2">
-              <a href="{{route('tambahPemesanan.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-check"></i>
-                <div data-i18n="Analytics">Admin</div>
               </a>
             </li>
           </ul>
