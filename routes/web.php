@@ -8,6 +8,7 @@ use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenyetujuanController;
 use App\Http\Controllers\Admin\TambahPemasananController;
 use App\Http\Controllers\Admin\RiwayatPemesananController;
+use App\Http\Controllers\LaporanPemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,13 @@ Route::get('/pemesanan', [PemesananController::class,'index'])
 Route::get('/penyetujuan', [PenyetujuanController::class,'index'])
 ->middleware(['auth'])
 ->name('penyetujuan.index');
+
+Route::get('/laporan-pemesanan', [LaporanPemesananController::class,'index'])
+->middleware(['auth'])
+->name('laporanPemesanan.index');
+Route::post('/laporan-pemesanan/filter', [LaporanPemesananController::class,'filter'])
+->middleware(['auth'])
+->name('laporanPemesanan.filter');
 
 Route::get('/admin/tambah-pemesanan', [TambahPemasananController::class,'index'])
 ->middleware(['auth'])

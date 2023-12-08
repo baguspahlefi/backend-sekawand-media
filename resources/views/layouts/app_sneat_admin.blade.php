@@ -135,7 +135,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">nikel corp</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -162,6 +162,12 @@
               <a href="{{route('penyetujuan.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-check"></i>
                 <div data-i18n="Analytics">Penyetujuan</div>
+              </a>
+            </li>
+            <li class="menu-item mt-2">
+              <a href="{{route('laporanPemesanan.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Analytics">Laporan Pemesanan</div>
               </a>
             </li>
           </ul>

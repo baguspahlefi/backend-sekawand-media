@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ConsoleTVs\Charts\Facades\Charts;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -13,19 +12,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pemesananData = DB::table('pemesanan')
-        ->select(DB::raw("DATE_FORMAT(tgl_peminjaman, '%Y-%m') as month"), DB::raw('count(*) as total'))
-        ->groupBy('month')
+
+        $data = DB::table('pemesanan')
+        ->select(DB::raw('MONTH(tgl_peminjaman) as month'), DB::raw('COUNT(*) as total'))
+        ->groupBy(DB::raw('MONTH(tgl_peminjaman)'))
         ->get();
 
-        $chart = Charts::database($pemesananData, 'bar', 'highcharts')
-        ->title('Jumlah Pemesanan Kendaraan Tiap Bulan')
-        ->elementLabel('Total Pemesanan')
-        ->dimensions(1000, 500)
-        ->responsive(true)
-        ->groupBy('month');
+        $chartData = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $chartData[$i - 1] = 0; // Inisialisasi jumlah pemesanan setiap bulan dengan 0
+        }
+
+        // Mengisi array chartData dengan data dari query
+        foreach ($data as $item) {
+            $chartData[$item->month - 1] = $item->total;
+        }
         return view('dashboard',[
-            'chart' => $chart
+            'chartData' => $chartData
         ]);
     }
 

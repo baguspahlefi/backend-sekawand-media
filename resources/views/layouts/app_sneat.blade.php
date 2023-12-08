@@ -178,6 +178,12 @@
               </a>
             </li>
             @endrole
+            <li class="menu-item mt-2">
+              <a href="{{route('laporanPemesanan.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Analytics">Laporan Pemesanan</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->
