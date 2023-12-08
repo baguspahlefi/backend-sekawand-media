@@ -53,6 +53,9 @@ Route::get('/laporan-pemesanan', [LaporanPemesananController::class,'index'])
 Route::post('/laporan-pemesanan/filter', [LaporanPemesananController::class,'filter'])
 ->middleware(['auth'])
 ->name('laporanPemesanan.filter');
+Route::post('/laporan-pemesanan/excel', [LaporanPemesananController::class,'reportExcel'])
+->middleware(['auth'])
+->name('laporanPemesanan.excel');
 
 Route::get('/admin/tambah-pemesanan', [TambahPemasananController::class,'index'])
 ->middleware(['auth'])

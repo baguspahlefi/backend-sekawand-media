@@ -4,26 +4,30 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-               <div class="row">
-               <form action="{{route('laporanPemesanan.filter')}}" method="POST" id="filterForm">
+                <form class="d-inline" action="{{route('laporanPemesanan.filter')}}" method="POST" id="filterForm">
                     @csrf
-                <div class="col-12 col-md-6">
-                        <label class="ms-1" for="start-date">Start date</label>
-                        <input placeholder="Select date" id="due" name="tgl_peminjaman" type="date" id="example" class="form-control" required>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label class="ms-1" for="start-date">End date</label>
-                        <input placeholder="Select date" id="due" name="tgl_pengembalian" type="date" id="example" class="form-control" required>
-                    </div>
-                    <button class="btn btn-outline-primary mt-2 mb-2" style="float:right;">Filter</button>
-                </form>
-                    <div class="clear-filter">
-                        <a class="btn btn-reset mt-2" style="float:right;" href="#">Clear Filter</a>
-                    </div>
-               </div>
                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <label class="ms-1" for="start-date">Start date</label>
+                        <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control" required>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label class="ms-1" for="start-date">End date</label>
+                        <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
+                    </div>
+                    <button class="btn btn-outline-primary mt-2 mb-2" style="float:left;">Filter</button>
+                </form>
+               </div>
+               <div class="row mt-4">
                 <div class="col-12">
-                    <a href="#" class="btn btn-primary">Export Excel</a>
+                    <form class="d-inline" method="post" action="{{ route('laporanPemesanan.excel') }}">
+                        @csrf
+                        <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                    
+                        <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                    
+                        <button class="btn btn-primary" type="submit">Export Excel</button>
+                    </form>    
                 </div>
                </div>
                <div class="row mt-4">

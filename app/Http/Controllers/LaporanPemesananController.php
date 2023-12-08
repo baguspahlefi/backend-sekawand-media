@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pemesanan;
 use Carbon\Carbon;
+use App\Exports\PemesananExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanPemesananController extends Controller
 {
@@ -13,29 +15,32 @@ class LaporanPemesananController extends Controller
      */
     public function index()
     {
-        
+        $tanggalAwal = null;
+        $tanggalAkhir = null;
         $pemesanan = Pemesanan::with('kendaraanPeminjaman')->get();
         return view('laporan-pemesanan.index',[
+            'tanggalAwal' => $tanggalAwal,
+            'tanggalAkhir' => $tanggalAkhir,
             'data' => $pemesanan,
         ]);
     }
 
     public function filter(Request $request)
     {
-        $tgl_peminjaman = $request->has('tgl_peminjaman') ? Carbon::createFromFormat('Y-m-d', $request->input('tgl_peminjaman'))->startOfDay() : null;
-        $tgl_pengembalian = $request->has('tgl_pengembalian') ? Carbon::createFromFormat('Y-m-d', $request->input('tgl_pengembalian'))->endOfDay() : null;
-        $request->session()->put('tgl_peminjaman',$tgl_peminjaman);
-        $request->session()->put('tgl_pengembalian',$tgl_pengembalian);
+        $startDate = $request->has('startDate') ? Carbon::createFromFormat('Y-m-d', $request->input('startDate'))->startOfDay() : null;
+        $endDate = $request->has('endDate') ? Carbon::createFromFormat('Y-m-d', $request->input('endDate'))->endOfDay() : null;
+        $request->session()->put('startDate',$startDate);
+        $request->session()->put('endDate',$endDate);
 
-        if($request->session()->has('tgl_peminjaman')){
-			$tanggal = $request->session()->get('tgl_peminjaman');
+        if($request->session()->has('startDate')){
+			$tanggal = $request->session()->get('startDate');
             $tanggalAwal = Carbon::parse($tanggal)->format('Y-m-d');
 		}else{
 			$tanggalAwal = null;
 		}
 
-        if($request->session()->has('tgl_pengembalian')){
-			$tanggal = $request->session()->get('tgl_pengembalian');
+        if($request->session()->has('endDate')){
+			$tanggal = $request->session()->get('endDate');
             $tanggalAkhir = Carbon::parse($tanggal)->format('Y-m-d');
 		}else{
 			$tanggalAkhir = null;
@@ -43,8 +48,8 @@ class LaporanPemesananController extends Controller
     
         $query = Pemesanan::query();
     
-        if ($tgl_peminjaman && $tgl_pengembalian) {
-            $query->whereBetween('tgl_peminjaman', [$tgl_peminjaman, $tgl_pengembalian]);
+        if ($startDate && $endDate) {
+            $query->whereBetween('tgl_peminjaman', [$startDate, $endDate]);
         }
     
         $data = $query->get();
@@ -59,6 +64,14 @@ class LaporanPemesananController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function reportExcel(Request $request)
+    {
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        return Excel::download(new PemesananExport($startDate,$endDate), 'laporan-pemesanan.xlsx');
+    }
+
     public function create()
     {
         //
