@@ -14,7 +14,6 @@
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Pengembalian</th>
                             <th>Region</th>
-                            <th>Penyetuju</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -28,18 +27,9 @@
                             <td>{{$item->tgl_peminjaman}}</td>
                             <td>{{$item->tgl_pengembalian}}</td>
                             <td>{{$item->kendaraanPeminjaman->region->nama}}</td>
-                            <td>
-                                <button
-                                type="button"
-                                class="btn btn-sm btn-info"
-                                data-bs-toggle="modal"
-                                data-bs-target="#basicModal"
-                                >
-                                List Pihak Penyetuju
-                                </button>
-                            </td>
                             <td>{{$item->status}}</td>
                         </tr>
+              
                         @endforeach
                     </tbody>
                 </table>

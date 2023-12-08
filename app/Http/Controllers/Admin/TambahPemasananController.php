@@ -53,6 +53,7 @@ class TambahPemasananController extends Controller
     {
         $item = $request->all();
         Penyetuju::create($item);
+        return redirect()->route('tambahPemesanan.index')->with('success', 'Berhasil tambah penyetuju');
 
     }
 

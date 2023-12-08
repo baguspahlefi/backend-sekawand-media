@@ -110,20 +110,6 @@
                             </div>
                           </div>
                           <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Pihak Penyetuju</label>
-                            <div class="col-sm-10 mb-4">
-                                <button
-                                type="button"
-                                class="btn btn-sm btn-info"
-                                data-bs-toggle="modal"
-                                data-bs-target="#basicModal"
-                                >
-                                List Pihak Penyetuju
-                                </button>
-      
-                           
-                          </div>
-                          <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Gambar Kendaraan</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="gambar" type="file" id="formFile" />

@@ -15,7 +15,6 @@ class PemesananController extends Controller
     public function index()
     {
         $userId = $user = auth()->user()->id;
-    
         $pemesanan = Pemesanan::where('user_id', $userId)
         ->get();
         return view('pemesanan.index',[
