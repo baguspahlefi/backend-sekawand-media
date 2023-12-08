@@ -6,14 +6,16 @@
             <div class="card-header">Hallo pegawai</div>
 
             <div class="card-body">
-                @if(session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{session('status')}}
+                < <div>
+                    {!! $chart->container() !!}
                 </div>
-                @endif
-                {{__('You login')}}
+            
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                {!! $chart->script() !!}
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
 @endsection

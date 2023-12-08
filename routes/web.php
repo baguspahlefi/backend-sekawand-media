@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AjukanPemesananController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenyetujuanController;
@@ -23,9 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'index'])
+->middleware(['auth'])
+->name('dashboard');
 
 Route::get('/ajukan-pemesanan', [AjukanPemesananController::class,'index'])
 ->middleware(['auth'])
