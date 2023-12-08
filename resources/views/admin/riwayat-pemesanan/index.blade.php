@@ -20,14 +20,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($pemesanan as $item)
                         <tr>
-                            <td>1</td>
-                            <td>1201291</td>
-                            <td>Messi</td>
-                            <td>Pegawai</td>
-                            <td>2011-04-25</td>
-                            <td>2011-08-25</td>
-                            <td>A</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->user->nip}}</td>
+                            <td>{{$item->user->nama}}</td>
+                            <td>{{$item->user->jabatan->nama}}</td>
+                            <td>{{$item->tgl_peminjaman}}</td>
+                            <td>{{$item->tgl_pengembalian}}</td>
+                            <td>{{$item->kendaraanPeminjaman->region->nama}}</td>
                             <td>
                                 <button
                                 type="button"
@@ -40,10 +41,11 @@
                             </td>
                             <td>Approve</td>
                             <td>
-                                <a href="{{route('riwayatPemesanan.show')}}"><i class="text-primary fs-2 menu-icon tf-icons bx bx-info-circle"></i></a>
-                                <a href="{{route('riwayatPemesanan.show')}}"><i class="text-danger fs-2 menu-icon tf-icons bx bx-trash"></i></a>
+                                <a href="{{route('riwayatPemesanan.show',$item->id)}}"><i class="text-primary fs-2 menu-icon tf-icons bx bx-info-circle"></i></a>
+                                <a href="#"><i class="text-danger fs-2 menu-icon tf-icons bx bx-trash"></i></a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

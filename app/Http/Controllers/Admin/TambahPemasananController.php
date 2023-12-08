@@ -8,6 +8,7 @@ use App\Models\Kendaraan;
 use App\Models\Region;
 use App\Models\Jabatan;
 use App\Models\User;
+use App\Models\Penyetuju;
 
 class TambahPemasananController extends Controller
 {
@@ -17,8 +18,11 @@ class TambahPemasananController extends Controller
     public function index()
     {
         $kendaraan = Kendaraan::all();
+        $user = User::all();
         return view('admin.tambah-pemesanan.index',
         [
+
+            'user' => $user,
             'kendaraan' => $kendaraan
         ]
     );
@@ -32,7 +36,9 @@ class TambahPemasananController extends Controller
         $region = Region::all();
         $jabatan = Jabatan::all();
         $driver = User::where('jabatan_id','3')->get();
+
         return view('admin.tambah-pemesanan.create',[
+   
             'driver' => $driver,
             'region' => $region,
             'jabatan' => $jabatan
@@ -41,7 +47,16 @@ class TambahPemasananController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
      */
+    public function storePenyetuju(Request $request)
+    {
+        $item = $request->all();
+        Penyetuju::create($item);
+
+    }
+
+
     public function store(Request $request)
     {   
         $item = $request->all();
@@ -57,7 +72,7 @@ class TambahPemasananController extends Controller
         if ($request->hasFile('gambar') && $request->file('gambar')->isValid()) {
             $item['gambar'] = $request->file('gambar')->store('assets/gallery', 'public');
             Kendaraan::create($item);
-            return redirect()->back()->with('success', 'Berhasil menambahkan gambar evidance');
+            return redirect()->route('tambahPemesanan.index')->with('success', 'Berhasil tambah');
         } else {
             return redirect()->back()->with('failed','Pastikan format gambar benar dan gambar tidak boleh lebih dari 5MB');
         }
@@ -70,7 +85,9 @@ class TambahPemasananController extends Controller
     public function show($id)
     {
         $kendaraan = Kendaraan::findOrFail($id);
+        $penyetuju = Penyetuju::where('kendaraan_id',$id)->get();
         return view('admin.tambah-pemesanan.detail',[
+            'penyetuju' => $penyetuju,
             'kendaraan' => $kendaraan,
             'driver' => $kendaraan->driver,
         ]);

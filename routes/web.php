@@ -30,6 +30,9 @@ Route::get('/dashboard', function () {
 Route::get('/ajukan-pemesanan', [AjukanPemesananController::class,'index'])
 ->middleware(['auth'])
 ->name('ajukan-pemesanan.index');
+Route::post('/ajukan-pemesanan/store', [AjukanPemesananController::class,'store'])
+->middleware(['auth'])
+->name('ajukan-pemesanan.store');
 Route::get('/ajukan-pemesanan/show/{id}', [AjukanPemesananController::class,'show'])
 ->middleware(['auth'])
 ->name('ajukan-pemesanan.show');
@@ -58,10 +61,14 @@ Route::get('/admin/tambah-pemesanan/edit', [TambahPemasananController::class,'ed
 ->middleware(['auth'])
 ->name('tambahPemesanan.edit');
 
+Route::post('/admin/tambah-pemesanan/penyetuju/store', [TambahPemasananController::class,'storePenyetuju'])
+->middleware(['auth'])
+->name('tambahPemesananPenyetuju.store');
+
 Route::get('/admin/riwayat-pemesanan', [RiwayatPemesananController::class,'index'])
 ->middleware(['auth'])
 ->name('riwayatPemesanan.index');
-Route::get('/admin/riwayat-pemesanan/show', [RiwayatPemesananController::class,'show'])
+Route::get('/admin/riwayat-pemesanan/show/{id}', [RiwayatPemesananController::class,'show'])
 ->middleware(['auth'])
 ->name('riwayatPemesanan.show');
 

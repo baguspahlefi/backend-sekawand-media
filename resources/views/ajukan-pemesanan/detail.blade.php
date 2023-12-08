@@ -36,10 +36,12 @@
                           <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="mb-0">Form Pengajuan</h5>
                           </div>
-                          <form action="#" method="post">
+                          <form action="{{route('ajukan-pemesanan.store')}}" method="post">
                             @csrf
                           <div class="card-body">
                             <div class="row mb-3">
+                              <input class="d-none" type="text" name="user_id" value="{{$user->id}}"/>
+                              <input class="d-none" type="text" name="kendaraan_id" value="{{$kendaraan->id}}"/>
                               <label class="col-sm-2 col-form-label" for="basic-default-nopol">NIP</label>
                               <div class="col-sm-10">
                                 <input type="text" name="nip" class="form-control" id="basic-default-name" value="{{$user->nip}}" readonly/>
@@ -67,7 +69,7 @@
                                   class="form-control"
                                   id="basic-default-company"
                                   placeholder="ACME Inc."
-                                  value="{{$user->jabatan_id}}"
+                                  value="{{$user->jabatan->nama}}"
                                   name="jabatan"
                                   readonly
                                 />
@@ -108,7 +110,6 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                name="tgl_pengembalian"
                                 value="{{$kendaraan->region->nama}}"
                               />
                             </div>
@@ -150,16 +151,13 @@
                                                   </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
+                                                  @foreach ($penyetuju as $penyetuju)
                                                   <tr>
-                                                      <td>1</td>
-                                                      <td>Ronaldo</td>
-                                                      <td>Supervisor</td>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>{{$penyetuju->user->nama}}</td>
+                                                    <td>{{$penyetuju->user->jabatan->nama}}</td>
                                                   </tr>
-                                                  <tr>
-                                                      <td>1</td>
-                                                      <td>Ronaldo</td>
-                                                      <td>Supervisor</td>
-                                                  </tr>
+                                                  @endforeach
                                                 </tbody>
                                               </table>
                                           </div>

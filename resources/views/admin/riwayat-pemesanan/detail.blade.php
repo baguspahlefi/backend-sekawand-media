@@ -14,7 +14,7 @@
                           <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-nopol">NIP</label>
                             <div class="col-sm-10">
-                              <input type="text" name="nip" class="form-control" id="basic-default-name" value="1201291" />
+                              <input type="text" name="nip" class="form-control" id="basic-default-name" value="{{$pemesanan->user->nip}}" />
                             </div>
                           </div>
                           <div class="row mb-3">
@@ -25,8 +25,8 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="Messi"
                                 name="nama"
+                                value="{{$pemesanan->user->nama}}"
                               />
                             </div>
                           </div>
@@ -38,7 +38,7 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="pegawai"
+                                value="{{$pemesanan->user->jabatan->nama}}"
                                 name="jabatan"
                               />
                             </div>
@@ -51,7 +51,7 @@
                               class="form-control"
                               id="basic-default-company"
                               placeholder="ACME Inc."
-                              value="08-10-2023"
+                              value="{{$pemesanan->tgl_peminjaman}}"
                               name="tgl_peminjaman"
                             />
                             </div>
@@ -64,7 +64,7 @@
                               class="form-control"
                               id="basic-default-company"
                               placeholder="ACME Inc."
-                              value="08-10-2023"
+                              value="{{$pemesanan->tgl_pengembalian}}"
                               name="tgl_pengembalian"
                             />
                             </div>
@@ -77,7 +77,7 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="10.000 km/h"
+                                value="{{$pemesanan->kendaraanPeminjaman->jadwal_service}}"
                                 name="jadwalService"
                               />
                             </div>
@@ -87,9 +87,11 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                   <select id="defaultSelect" class="form-select" name="region">
-                                      <option value="A">A</option>
-                                      <option value="B">B</option>
-                                      <option value="2">C</option>
+                                    <option value="{{$pemesanan->kendaraanPeminjaman->region_id}}">{{$pemesanan->user->region->nama}}</option>
+                                    @foreach ($region as $region)
+                                      <option value="{{$region->id}}">{{$region->nama}}</option>
+                                    @endforeach
+                                      
                                   </select>
                                 </div>
                               </div>
@@ -168,7 +170,7 @@
                           <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-nopol">No Pol</label>
                             <div class="col-sm-10">
-                              <input type="text" name="nopol" class="form-control" id="basic-default-name" value="AE 1234 BEZ" />
+                              <input type="text" name="nopol" class="form-control" id="basic-default-name" value="{{$pemesanan->kendaraanPeminjaman->nopol}}" />
                             </div>
                           </div>
                           <div class="row mb-3">
@@ -179,7 +181,7 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="Nissan GTR"
+                                value="{{$pemesanan->kendaraanPeminjaman->nama_kendaraan}}"
                                 name="namaKendaraan"
                               />
                             </div>
@@ -200,10 +202,10 @@
                             <label class="col-sm-2 col-form-label" for="basic-default-phone">Region</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                  <select id="defaultSelect" class="form-select" name="region">
-                                      <option value="A">A</option>
-                                      <option value="B">B</option>
-                                      <option value="2">C</option>
+                                  <select id="defaultSelect" class="form-select" name="regionMobil">
+                                    <option value="{{$pemesanan->kendaraanPeminjaman->region_id}}">{{$pemesanan->kendaraanPeminjaman->region->nama}}</option>
+                              
+                                      
                                   </select>
                                 </div>
                               </div>
@@ -216,7 +218,7 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="Pertamax"
+                                value="{{$pemesanan->kendaraanPeminjaman->bbm}}"
                                 name="BBM"
                               />
                             </div>
@@ -229,7 +231,7 @@
                                 class="form-control"
                                 id="basic-default-company"
                                 placeholder="ACME Inc."
-                                value="10.000 km/h"
+                                value="{{$pemesanan->kendaraanPeminjaman->jadwal_service}}"
                                 name="jadwalService"
                               />
                             </div>
@@ -237,14 +239,16 @@
                           <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Deskripsi</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="3">
+                                  {{$pemesanan->kendaraanPeminjaman->deskripsi}}
+                                </textarea>
                             </div>
                           </div>
 
                           <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Gambar Kendaraan</label>
                             <div class="col-sm-10">
-                                <img src="{{url('assets/img/gtr.png')}}" width="250" alt="">
+                              <img src="{{ Storage::url($pemesanan->kendaraanPeminjaman->gambar) }}" width="250" alt="Product Image" class="img-fluid">
                             </div>
                           </div>
                         

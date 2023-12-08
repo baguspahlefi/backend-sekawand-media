@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use App\Models\Pemesanan;
+use App\Models\Penyetuju;
 
 class PemesananController extends Controller
 {
@@ -12,7 +14,13 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        return view('pemesanan.index');
+        $userId = $user = auth()->user()->id;
+    
+        $pemesanan = Pemesanan::where('user_id', $userId)
+        ->get();
+        return view('pemesanan.index',[
+            'pemesanan'=>$pemesanan
+        ]);
     }
 
     /**

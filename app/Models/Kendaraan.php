@@ -31,5 +31,9 @@ class Kendaraan extends Model
     public function kendaraan(){
         return $this->belongsTo(User::class,'driver');
     }
+
+    public function kendaraanPeminjaman(){
+        return $this->hasMany(pemesanan::class);
+    }
 }
 

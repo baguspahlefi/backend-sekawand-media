@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
     {
         $admin = User::create([
             'nip' => '123',
-            'nama' => 'Bagus',
+            'nama' => 'Bagus Admin',
             'email' => 'bagus@gmail.com',
             'password' => bcrypt('password'),
             'no_phone' => '081738112',
@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
 
         $user1 = User::create([
             'nip' => '1234',
-            'nama' => 'pahlefi',
+            'nama' => 'Ronaldo Staff',
             'email' => 'bagus1@gmail.com',
             'password' => bcrypt('password'),
             'no_phone' => '081738113',
@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
 
         $user2 = User::create([
             'nip' => '1235',
-            'nama' => 'pahlefi',
+            'nama' => 'Messi Staff',
             'email' => 'bagus12@gmail.com',
             'password' => bcrypt('password'),
             'no_phone' => '081738114',
@@ -48,7 +48,7 @@ class UserTableSeeder extends Seeder
 
         $user3 = User::create([
             'nip' => '123456',
-            'nama' => 'pahlefi',
+            'nama' => 'Neymar supir',
             'email' => 'bagus123@gmail.com',
             'password' => bcrypt('password'),
             'no_phone' => '081738116',

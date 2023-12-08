@@ -7,31 +7,40 @@
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>No</th>
+                            <th>NOPOL</th>
+                            <th>Nama Kendaraan</th>
+                            <th>Jenis Kendaraan</th>
+                            <th>Tanggal Peminjaman</th>
+                            <th>Tanggal Pengembalian</th>
+                            <th>Region</th>
+                            <th>Penyetuju</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($pemesanan as $item)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011-04-25</td>
-                            <td>$320,800</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->kendaraanPeminjaman->nopol}}</td>
+                            <td>{{$item->kendaraanPeminjaman->nama_kendaraan}}</td>
+                            <td>{{$item->kendaraanPeminjaman->jenis_kendaraan}}</td>
+                            <td>{{$item->tgl_peminjaman}}</td>
+                            <td>{{$item->tgl_pengembalian}}</td>
+                            <td>{{$item->kendaraanPeminjaman->region->nama}}</td>
+                            <td>
+                                <button
+                                type="button"
+                                class="btn btn-sm btn-info"
+                                data-bs-toggle="modal"
+                                data-bs-target="#basicModal"
+                                >
+                                List Pihak Penyetuju
+                                </button>
+                            </td>
+                            <td>{{$item->status}}</td>
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011-07-25</td>
-                            <td>$170,750</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

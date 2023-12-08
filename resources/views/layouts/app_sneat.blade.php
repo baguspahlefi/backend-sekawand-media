@@ -242,7 +242,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                            <span class="fw-semibold d-block">{{ Auth::user()->nama }}</span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -299,6 +299,17 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
+              @if (session('failed'))
+                <div class="alert alert-danger">
+                    {{ session('failed') }}
+                </div>
+              @endif
+
+              @if (session('success'))
+                  <div class="alert alert-success">
+                      {{ session('success') }}
+                  </div>
+              @endif
               @yield('content')
             </div>
             <!-- / Content -->

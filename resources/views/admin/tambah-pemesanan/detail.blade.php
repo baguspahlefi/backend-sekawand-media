@@ -101,16 +101,15 @@
                                                 </tr>
                                               </thead>
                                               <tbody class="table-border-bottom-0">
+                                                @foreach ($penyetuju as $penyetuju)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Ronaldo</td>
-                                                    <td>Supervisor</td>
+                                                  <td>{{$loop->iteration}}</td>
+                                                  <td>{{$penyetuju->user->nama}}</td>
+                                                  <td>{{$penyetuju->user->jabatan->nama}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Ronaldo</td>
-                                                    <td>Supervisor</td>
-                                                </tr>
+                                                @endforeach
+                                                
+                                                
                                               </tbody>
                                             </table>
                                         </div>

@@ -1,23 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pemesanan;
-use App\Models\Region;
 
-class RiwayatPemesananController extends Controller
+class PeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pemesanan = Pemesanan::with('kendaraanPeminjaman')->get();
-        return view('admin.riwayat-pemesanan.index',[
-            'pemesanan' => $pemesanan,
-        ]);
+        //
     }
 
     /**
@@ -33,20 +27,15 @@ class RiwayatPemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $pemesanan = Pemesanan::findOrFail($id);
-        $region = Region::all();
-        return view('admin.riwayat-pemesanan.detail',[
-            'region' => $region,
-            'pemesanan' => $pemesanan
-        ]);
+        //
     }
 
     /**
