@@ -9,23 +9,21 @@
                     <div class="container mt-5">
                       <div class="row mb-4">
                         <div class="col-md-6 my-auto">
-                          <img src="{{url('assets/img/gtr.png')}}" alt="Product Image" class="img-fluid">
+                          <img src="{{ Storage::url($kendaraan->gambar) }}" alt="Product Image" class="img-fluid">
                         </div>
                         <div class="col-md-6">
-                          <h2>Product Name</h2>
+                          <h2>{{$kendaraan->nama_kendaraan}}</h2>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac dui at turpis ultricies vestibulum.
-                            Sed ac libero nec ligula fermentum faucibus vel eu tellus.
-                            Integer vitae mi vel tellus suscipit fermentum. Proin varius euismod ipsum, at egestas dolor commodo non.
+                            {{$kendaraan->deskripsi}}
                           </p>
                           <div class="subtext">
-                            <strong><u>Jenis Kendaraan:</u></strong> Angkutan orang
+                            <strong><u>Jenis Kendaraan:</u></strong> {{$kendaraan->jenis_kendaraan}}
                           </div>
                           <div class="subtext">
-                            <strong><u>Konsumsi BBM:</u></strong> Pertalite
+                            <strong><u>Konsumsi BBM:</u></strong> {{$kendaraan->bbm}}
                           </div>
                           <div class="subtext">
-                            <strong><u>Jadwal Service:</u></strong> Setiap 10.000 km
+                            <strong><u>Jadwal Service:</u></strong> Setiap {{$kendaraan->jadwal_service}}
                           </div>
                           <div class="subtext">
                             <strong><u>Riwayat Pemakaian:</u><a href="#"> Klik disini</a>
@@ -38,74 +36,161 @@
                           <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="mb-0">Form Pengajuan</h5>
                           </div>
+                          <form action="#" method="post">
+                            @csrf
                           <div class="card-body">
-                            <form>
-                              <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="basic-default-name" placeholder="John Doe" />
-                                </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-nopol">NIP</label>
+                              <div class="col-sm-10">
+                                <input type="text" name="nip" class="form-control" id="basic-default-name" value="{{$user->nip}}" readonly/>
                               </div>
-                              <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-company">Company</label>
-                                <div class="col-sm-10">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="basic-default-company"
-                                    placeholder="ACME Inc."
-                                  />
-                                </div>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Nama</label>
+                              <div class="col-sm-10">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="basic-default-company"
+                                  placeholder="ACME Inc."
+                                  value="{{$user->nama}}"
+                                  name="nama"
+                                  readonly
+                                />
                               </div>
-                              <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-email">Email</label>
-                                <div class="col-sm-10">
-                                  <div class="input-group input-group-merge">
-                                    <input
-                                      type="text"
-                                      id="basic-default-email"
-                                      class="form-control"
-                                      placeholder="john.doe"
-                                      aria-label="john.doe"
-                                      aria-describedby="basic-default-email2"
-                                    />
-                                    <span class="input-group-text" id="basic-default-email2">@example.com</span>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-email">Jabatan</label>
+                              <div class="col-sm-10">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="basic-default-company"
+                                  placeholder="ACME Inc."
+                                  value="{{$user->jabatan_id}}"
+                                  name="jabatan"
+                                  readonly
+                                />
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-phone">Tanggal Peminjaman</label>
+                              <div class="col-sm-10">
+                                <input
+                                type="date"
+                                class="form-control"
+                                id="basic-default-company"
+                                placeholder="ACME Inc."
+                                name="tgl_peminjaman"
+                              />
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-phone">Tanggal Pengembalian</label>
+                              <div class="col-sm-10">
+                                <input
+                                type="date"
+                                class="form-control"
+                                id="basic-default-company"
+                                placeholder="ACME Inc."
+                                name="tgl_pengembalian"
+                              />
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-phone">Region Kendaraan</label>
+                              <div class="col-sm-10">
+                                  <p>Region {{$kendaraan->region->nama}}</p>
+                              </div>
+                              <div class="col-sm-10 d-none">
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="basic-default-company"
+                                placeholder="ACME Inc."
+                                name="tgl_pengembalian"
+                                value="{{$kendaraan->region->nama}}"
+                              />
+                            </div>
+                            
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Pihak Penyetuju</label>
+                              <div class="col-sm-10 mb-4">
+                                  <button
+                                  type="button"
+                                  class="btn btn-sm btn-info"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#basicModal"
+                                  >
+                                  List Pihak Penyetuju
+                                  </button>
+        
+                                <!-- Modal -->
+                                <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel1">Pihak Penyetuju</h5>
+                                        <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                        ></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="row">
+                                          <div class="table-responsive text-nowrap">
+                                              <table class="table">
+                                                <thead>
+                                                  <tr>
+                                                      <th>No</th>
+                                                      <th>Nama</th>
+                                                      <th>Jabatan</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody class="table-border-bottom-0">
+                                                  <tr>
+                                                      <td>1</td>
+                                                      <td>Ronaldo</td>
+                                                      <td>Supervisor</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>1</td>
+                                                      <td>Ronaldo</td>
+                                                      <td>Supervisor</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                          Close
+                                        </button>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div class="form-text">You can use letters, numbers & periods</div>
                                 </div>
+                            </div>
+                            <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label" for="basic-default-namakendaraan">Status</label>
+                              <div class="col-sm-10">
+                              @if ($kendaraan->jumlah == 0)
+                                <p>Booked</p>
+                                @else
+                                <p>Available</p>
+                              @endif
                               </div>
-                              <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-phone">Phone No</label>
-                                <div class="col-sm-10">
-                                  <input
-                                    type="text"
-                                    id="basic-default-phone"
-                                    class="form-control phone-mask"
-                                    placeholder="658 799 8941"
-                                    aria-label="658 799 8941"
-                                    aria-describedby="basic-default-phone"
-                                  />
-                                </div>
-                              </div>
-                              <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-message">Message</label>
-                                <div class="col-sm-10">
-                                  <textarea
-                                    id="basic-default-message"
-                                    class="form-control"
-                                    placeholder="Hi, Do you have a moment to talk Joe?"
-                                    aria-label="Hi, Do you have a moment to talk Joe?"
-                                    aria-describedby="basic-icon-default-message2"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div class="row justify-content-end">
-                                <div class="col-sm-10">
-                                  <button type="submit" class="btn btn-primary">Send</button>
-                                </div>
-                              </div>
-                            </form>
+                            </div>
                           </div>
+                            <div class="row justify-content-end">
+                              <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Ajukan</button>
+                              </div>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>

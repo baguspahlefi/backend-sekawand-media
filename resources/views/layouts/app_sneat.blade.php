@@ -135,7 +135,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">nikel corp</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -170,12 +170,14 @@
                 <div data-i18n="Analytics">Penyetujuan</div>
               </a>
             </li>
+            @role('admin')
             <li class="menu-item mt-2">
               <a href="{{route('tambahPemesanan.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-check"></i>
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div data-i18n="Analytics">Admin</div>
               </a>
             </li>
+            @endrole
           </ul>
         </aside>
         <!-- / Menu -->

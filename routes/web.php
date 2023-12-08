@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 Route::get('/ajukan-pemesanan', [AjukanPemesananController::class,'index'])
 ->middleware(['auth'])
 ->name('ajukan-pemesanan.index');
-Route::get('/ajukan-pemesanan/show', [AjukanPemesananController::class,'show'])
+Route::get('/ajukan-pemesanan/show/{id}', [AjukanPemesananController::class,'show'])
 ->middleware(['auth'])
 ->name('ajukan-pemesanan.show');
 
@@ -45,7 +45,13 @@ Route::get('/penyetujuan', [PenyetujuanController::class,'index'])
 Route::get('/admin/tambah-pemesanan', [TambahPemasananController::class,'index'])
 ->middleware(['auth'])
 ->name('tambahPemesanan.index');
-Route::get('/admin/tambah-pemesanan/show', [TambahPemasananController::class,'show'])
+Route::get('/admin/tambah-pemesanan/create', [TambahPemasananController::class,'create'])
+->middleware(['auth'])
+->name('tambahPemesanan.create');
+Route::post('/admin/tambah-pemesanan/store', [TambahPemasananController::class,'store'])
+->middleware(['auth'])
+->name('tambahPemesanan.store');
+Route::get('/admin/tambah-pemesanan/show/{id}', [TambahPemasananController::class,'show'])
 ->middleware(['auth'])
 ->name('tambahPemesanan.show');
 Route::get('/admin/tambah-pemesanan/edit', [TambahPemasananController::class,'edit'])

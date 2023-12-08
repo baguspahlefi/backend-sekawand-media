@@ -4,6 +4,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
+                <a href="{{route('tambahPemesanan.create')}}" class="btn btn-primary mb-4"><i class="menu-icon tf-icons bx bx-plus-circle"></i>Tambah Pemesanan</a>
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -21,20 +22,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($kendaraan as $item)
                         <tr>
-                            <td>1</td>
-                            <td>AE 1234 BEZ</td>
-                            <td>Nissan GTR</td>
-                            <td>Angkutan orang</td>
-                            <td>A</td>
-                            <td>Pertamax</td>
-                            <td>per 10.000 km/h</td>
-                            <th>12</th>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->nopol}}</td>
+                            <td>{{$item->nama_kendaraan}}</td>
+                            <td>{{$item->jenis_kendaraan}}</td>
+                            <td>{{$item->region->nama}}</td>
+                            <td>{{$item->bbm}}</td>
+                            <td>per {{$item->jadwal_service}}</td>
+                            <th>{{$item->jumlah}}</th>
                             <td>
-                                <a href="{{route('tambahPemesanan.show')}}"><i class="text-primary fs-2 menu-icon tf-icons bx bx-info-circle"></i></a>
+                                <a href="{{route('tambahPemesanan.show',$item->id)}}"><i class="text-primary fs-2 menu-icon tf-icons bx bx-info-circle"></i></a>
                                 <a href="{{route('tambahPemesanan.edit')}}"><i class="text-warning fs-2 menu-icon tf-icons bx bx-edit"></i></a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

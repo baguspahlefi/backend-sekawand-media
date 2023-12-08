@@ -12,7 +12,11 @@ class AjukanPemesananController extends Controller
      */
     public function index()
     {
-        return view('ajukan-pemesanan.index');
+        $kendaraan = Kendaraan::all();
+        return view('ajukan-pemesanan.index',
+        [
+            'kendaraan' => $kendaraan
+        ]);
     }
 
     /**
@@ -34,9 +38,14 @@ class AjukanPemesananController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kendaraan $kendaraan)
-    {
-        return view('ajukan-pemesanan.detail');
+    public function show($id)
+    {   
+        $user = auth()->user();
+        $kendaraan = Kendaraan::findOrFail($id);
+        return view('ajukan-pemesanan.detail',[
+            'user' => $user,
+            'kendaraan' => $kendaraan
+        ]);
     }
 
     /**

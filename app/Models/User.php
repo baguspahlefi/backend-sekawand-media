@@ -40,6 +40,9 @@ class User extends Authenticatable
         return $this->belongsTo(Region::class);
     }
 
+    public function kendaraan(){
+        return $this->hasMany(User::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
