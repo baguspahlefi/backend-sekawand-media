@@ -69,7 +69,7 @@ Route::post('/admin/tambah-pemesanan/store', [TambahPemasananController::class,'
 Route::get('/admin/tambah-pemesanan/show/{id}', [TambahPemasananController::class,'show'])
 ->middleware(['auth'])
 ->name('tambahPemesanan.show');
-Route::get('/admin/tambah-pemesanan/edit', [TambahPemasananController::class,'edit'])
+Route::get('/admin/tambah-pemesanan/edit/{id}', [TambahPemasananController::class,'edit'])
 ->middleware(['auth'])
 ->name('tambahPemesanan.edit');
 

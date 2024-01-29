@@ -97,15 +97,17 @@ class TambahPemasananController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($id)
     {
-        $kendaraan = findOrFail($id);
+        $kendaraan = Kendaraan::findOrFail($id);
         $user = auth()->user();
+        $penyetuju = Penyetuju::where('kendaraan_id',$id)->get();
 
         return view('admin.tambah-pemesanan.edit',
         [
             'user' => $user,
-            'kendaraan' => $kendaraan
+            'kendaraan' => $kendaraan,
+            'penyetuju' => $penyetuju
         ]);
     }
 

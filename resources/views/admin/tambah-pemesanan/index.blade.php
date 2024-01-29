@@ -44,7 +44,7 @@
                             </td>
                             <td>
                                 <a href="{{route('tambahPemesanan.show',$item->id)}}"><i class="text-primary fs-2 menu-icon tf-icons bx bx-info-circle"></i></a>
-                                <a href="{{route('tambahPemesanan.edit')}}"><i class="text-warning fs-2 menu-icon tf-icons bx bx-edit"></i></a>
+                                <a href="{{route('tambahPemesanan.edit',$item->id)}}"><i class="text-warning fs-2 menu-icon tf-icons bx bx-edit"></i></a>
                             </td>
                         </tr>
                            <!-- Modal -->
